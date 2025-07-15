@@ -2,13 +2,66 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 3</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .task {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task.red {
+            background-color: #e74c3c;
+        }
+
+        .task.orange {
+            background-color: #e67e22;
+        }
+
+        .task.green {
+            background-color: #27ae60;
+        }
+
+        .task span {
+            cursor: pointer;
+        }
+
+        button {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <p id="result"></p>
+    <h1>Task Manager</h1>
+
+    <form id="taskForm">
+        <input type="text" id="taskName" placeholder="Task Name" required />
+        <select id="taskType" required>
+            <option value="">Select Type</option>
+            <option value="Task">Task</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Done">Done</option>
+        </select>
+        <button type="submit">Add Task</button>
+    </form>
+    <div id="result"></div>
     <script src="main.js"></script>
 </body>
 

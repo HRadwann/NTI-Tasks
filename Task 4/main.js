@@ -1,35 +1,78 @@
-let temperature = prompt("Please enter the current temperature in °C:");
+const taskForm = document.getElementById('taskForm');
+const taskNameInput = document.getElementById('taskName');
+const taskTypeSelect = document.getElementById('taskType');
+const taskList = document.getElementById('taskList');
 
-let condition =
-    temperature < 0 ? "Freezing cold" :
-        temperature >= 0 && temperature <= 15 ? "Cold" :
-            temperature >= 16 && temperature <= 25 ? "Mild" :
-                temperature >= 26 && temperature <= 35 ? "Warm" :
-                    "Hot";
+let tasks = [];
 
-let state;
-if (temperature < -5 || temperature > 40) {
-    state = "Dangerous temperature";
-} else {
-    state = "Safe temperature";
+function getColorClass(type) {
+    switch (type) {
+        case 'In Progress': return 'orange';
+        case 'Done': return 'green';
+        case 'Task': return 'red';
+        default: return '';
+    }
 }
 
-let advice =
-    temperature >= 16 && temperature <= 25 ? "Perfect for outdoor activities!" :
-        temperature > 30 ? "Stay hydrated!" :
-            "";
+function displayTasks() {
+    result.innerHTML = '';
+    tasks.forEach((task, index) => {
+        const taskDiv = document.createElement('div');
+        taskDiv.className = `task ${getColorClass(task.taskType)}`;
 
-let result = `Weather Report:
-Current Temperature: ${temperature}°C
-Weather Condition: ${condition}
-Safety Status: ${state}
-${advice ? "Advice: " + advice : ""}`;
+        taskDiv.innerHTML = `
+          <span onclick="editTask(${index})">
+            <strong>${task.taskName}</strong> - ${task.taskType} <br/>
+            <small>${task.dateAdded}</small>
+          </span>
+          <span>
+            <button onclick="deleteTask(${index})">Delete</button>
+          </span>
+        `;
 
-//console
-console.log(result);
+        result.appendChild(taskDiv);
+    });
+}
 
-//alert
-alert(result);
+taskForm.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-//HTML DOM
-document.getElementById('result').innerHTML = (result);
+    const taskName = taskNameInput.value.trim();
+    const taskType = taskTypeSelect.value;
+
+    if (taskName === '' || taskType === '') {
+        alert('Please enter both task name and type.');
+        return;
+    }
+
+    const task = {
+        taskName,
+        taskType,
+        dateAdded: new Date().toLocaleString()
+    };
+
+    tasks.push(task);
+    displayTasks();
+    console.log(tasks);
+    taskForm.reset();
+});
+
+function editTask(index) {
+    const newName = prompt('Edit Task Name:', tasks[index].taskName);
+    const newType = prompt('Edit Task Type (Task, In Progress, Done):', tasks[index].taskType);
+
+    if (newName && newType) {
+        tasks[index].taskName = newName;
+        tasks[index].taskType = newType;
+        displayTasks();
+    }
+}
+
+function deleteTask(index) {
+    if (confirm('Are you sure you want to delete this task?')) {
+        tasks.splice(index, 1);
+    }
+}
+
+window.editTask = editTask;
+window.deleteTask = deleteTask;
