@@ -1,0 +1,88 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #6199ff;
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#hero {
+  background-color: #f4f4f9;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+#hero h1,
+#about h2,
+#contact h2 {
+  margin: 0;
+  font-size: 2.5em;
+}
+
+#hero p,
+#about p,
+#contact p {
+  font-size: 1.2em;
+}
+
+button {
+  padding: 10px 25px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+form input,
+form textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 1em;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+footer {
+  background-color: #6199ff;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+}

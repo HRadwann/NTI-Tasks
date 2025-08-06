@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <h3>Add a New Post</h3>
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input id="title" class="form-control" formControlName="title" />
+    </div>
+    <div class="mb-5">
+      <label for="body" class="form-label">Body</label>
+      <textarea
+        id="body"
+        class="form-control"
+        formControlName="body"
+      ></textarea>
+    </div>
+    <button class="btn btn-warning" type="submit">Submit</button>
+  </form>
+</div>
